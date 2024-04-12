@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    dd('questa è una rotta api');
-});
+Route::get('/projects', [ProjectController::class, 'index'])->name('api.projects.index');
+
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('api.projects.show');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
