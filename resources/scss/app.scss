@@ -1,0 +1,43 @@
+@import "~bootstrap/scss/bootstrap";
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex-grow: 1;
+    }
+
+    a{
+        text-decoration: none;
+    
+    }
+}
+
+.preview-image-container{
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .delete-button{
+        position:absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        
+        background-color: red;
+        color: aliceblue;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+    }
+}
+
