@@ -21,7 +21,7 @@ class ProjectController extends Controller
             ->paginate();
 
         foreach ($projects as $project) {
-            $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : null;
+            $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : 'https://placehold.jp/600x400.png';
         }
 
         return response()->json($projects);
