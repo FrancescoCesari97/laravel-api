@@ -20,6 +20,10 @@ class ProjectController extends Controller
             ->with(['type:id,label,color', 'technology:id,label,color'])
             ->paginate();
 
+        foreach ($projects as $project) {
+            $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : null;
+        }
+
         return response()->json($projects);
     }
 
