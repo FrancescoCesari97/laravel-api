@@ -24,7 +24,10 @@ class ProjectController extends Controller
             $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : 'https://placehold.jp/600x400.png';
         }
 
-        return response()->json($projects);
+        return response()->json([
+            'result' => $projects,
+            'success' => true,
+        ]);
     }
 
     /**
