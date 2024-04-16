@@ -51,9 +51,19 @@ class ProjectController extends Controller
             ->with(['type:id,label,color', 'technology:id,label,color'])
             ->first();
 
+        if (empty($project)) {
+            return response()->json([
+                'message' => 'project not found',
+                'success' => false,
+            ]);
+        }
+
         $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : 'https://placehold.jp/600x400.png';
 
-        return response()->json($project);
+        return response()->json([
+            'result' => $project,
+            'success' => true,
+        ]);
     }
 
     /**
