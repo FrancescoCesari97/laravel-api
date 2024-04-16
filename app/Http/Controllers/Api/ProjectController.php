@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::select(['id', 'type_id', 'title', 'content', 'image'])
+        $projects = Project::select(['id', 'type_id', 'title', 'content', 'image', 'slug'])
             ->orderBy('updated_at', 'DESC')
             ->with(['type:id,label,color', 'technology:id,label,color'])
             ->paginate();
@@ -44,9 +44,16 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $project = Project::select(['id', 'type_id', 'title', 'content', 'image', 'slug'])
+            ->where('slug', $slug)
+            ->with(['type:id,label,color', 'technology:id,label,color'])
+            ->first();
+
+        $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : 'https://placehold.jp/600x400.png';
+
+        return response()->json($project);
     }
 
     /**
